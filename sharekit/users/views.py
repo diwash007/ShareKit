@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import UserCreateForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -13,14 +14,13 @@ def index(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("home")
+            return redirect(request.POST.get('next') or "home")
         messages.error(request, 'Invalid login credentials.')
     
     login_form = UserCreateForm()
     context = {
         'form' : login_form
         }
-    print(request.user)
     return render(request, "users/login.html", context)
 
 def register(request):
@@ -37,6 +37,11 @@ def register(request):
     }
     return render(request, "users/register.html", context)
 
+@login_required
 def logout_user(request):
     logout(request)
     return redirect("login")
+
+@login_required
+def profile(request):
+    return render(request, "users/profile.html")

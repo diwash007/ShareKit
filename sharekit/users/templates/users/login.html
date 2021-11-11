@@ -41,6 +41,7 @@
          <input placeholder="Password" type="password" name="password" id="password">
          <label for="password">Password:</label>
        </div>
+       <input type="hidden" name="next" value="{{ request.GET.next }}"/>
        <button type="submit">Log in</button>
        <br>
      <p>Don't have an account yet? 
