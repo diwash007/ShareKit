@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserCreateForm
 from django.contrib.auth import authenticate, login, logout
+from .models import Share
 
 
 def index(request):
@@ -18,7 +19,7 @@ def index(request):
     context = {
         'form' : login_form
         }
-    return render(request, "sharekitapp/index.html", context)
+    return render(request, "sharekitapp/login.html", context)
 
 def register(request):
     if request.method == "POST":
@@ -34,4 +35,7 @@ def register(request):
     return render(request, "sharekitapp/register.html", context)
 
 def home(request):
-    return render(request, "sharekitapp/home.html")
+    context = {
+        'shares': Share.objects.all()
+    }
+    return render(request, "sharekitapp/home.html", context)
