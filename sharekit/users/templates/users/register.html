@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,10 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>ShareKit - Register</title>
-   <link rel="stylesheet" href="{% static 'sharekitapp/style.css' %}">
-</head>
+   
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <link rel="stylesheet" href="{% static 'users/style.css' %}">
+  </head>
 
 
 <body>
@@ -24,27 +27,33 @@
       <form action="{% url 'register' %}" class="log-in" method="POST"> 
         {% csrf_token %}
         <h4>Welcome to <span>ShareKit</span></h4>
+
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="alert alert-{{msg.tags}}">
+              {{ msg }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
         <p>Register a new account with us:</p>
-        <div class="floating-label">
+        {{form|crispy}}
+        <!-- <div class="floating-label">
           {{ form.username }}
-          <label for="username">Username:</label>
         </div>
         <div class="floating-label">
-          {{ form.email }}
-          <label for="email">Email:</label>
+          {{ form.email  }}
         </div>
         <div class="floating-label">
-          {{ form.password1 }}
-          <label for="password1">Password:</label>
+          {{ form.password1  }}
         </div>
         <div class="floating-label">
           {{ form.password2 }}
-          <label for="password1">Confirm Password:</label>
-        </div>
+        </div> -->
         <button type="submit">Register</button>
         <br>
      <p>Already have an account?<br>
-        <a href="{% url 'index' %}">Login here</a>
+        <a href="{% url 'login' %}">Login here</a>
       </p>
       </form>
     </div>
