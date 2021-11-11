@@ -1,3 +1,11 @@
-{% for s in shares %}
-    {{ s }}<br>
-{% endfor %}
+{% extends "sharekitapp/base.html" %}
+
+{% block title %}
+    Home - ShareKit
+{% endblock %}
+
+{% block content %}
+    {% for s in shares %}
+        {{ s }}<br>
+    {% endfor %}
+{% endblock %}

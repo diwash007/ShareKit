@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sharekitapp.urls')),
     path('login', user_views.index, name="login"),
-    path('register', user_views.register, name="register")
+    path('register', user_views.register, name="register"),
+    path('logout', user_views.logout_user, name='logout')
 ]

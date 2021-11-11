@@ -14,12 +14,13 @@ def index(request):
         if user is not None:
             login(request, user)
             return redirect("home")
-        messages.error(request, f'User with username "{username}" doesn\'t exist')
+        messages.error(request, 'Invalid login credentials.')
     
     login_form = UserCreateForm()
     context = {
         'form' : login_form
         }
+    print(request.user)
     return render(request, "users/login.html", context)
 
 def register(request):
@@ -35,3 +36,7 @@ def register(request):
         'form' : form
     }
     return render(request, "users/register.html", context)
+
+def logout_user(request):
+    logout(request)
+    return redirect("login")
