@@ -5,7 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    {% for s in shares %}
-        {{ s }}<br>
-    {% endfor %}
+    <div class="content-section">
+        <a href="{% url 'add-share' %}" class="float-right"><button>Add</button></a>
+        {% for s in shares %}
+            <a href="{% url 'share-detail' s.id %}">
+                {{ s }}
+            </a>
+            <a href="{% url 'update-share' s.id %}">
+                Update
+            </a>
+            <a href="{% url 'delete-share' s.id %}">
+                Delete
+            </a>
+            <br>
+        {% endfor %}
+    </div>
 {% endblock %}

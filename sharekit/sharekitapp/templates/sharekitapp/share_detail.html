@@ -1,0 +1,13 @@
+{% extends "sharekitapp/base.html" %}
+
+{% block title %}
+    Home - ShareKit
+{% endblock %}
+
+{% block content %}
+    <div class="content-section">
+        {{ object.user }}<br>
+        {{ object.quantity }}<br>
+        {{ object.scrip }}
+    </div>
+{% endblock %}

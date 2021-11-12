@@ -1,0 +1,25 @@
+{% extends "sharekitapp/base.html" %}
+
+{% block title %}
+    Home - ShareKit
+{% endblock %}
+
+{% block content %}
+<div class="content-section">
+<form action="{% url 'delete-share' object.id %}" class="log-in" method="POST" enctype="multipart/form-data">
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert alert-{{msg.tags}}">
+          {{ msg }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    <h4>Delete Share:</h4>
+    {% csrf_token %}
+        <h5> Are you sure you want to delete the share "{{ object }}"?</h5>
+
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+</form>
+<a href="{% url 'home' %}"><button class="btn btn-secondary">Go back</button></a>
+</div>
+{% endblock %}
