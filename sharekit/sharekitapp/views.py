@@ -2,21 +2,15 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import DeleteView
 from .models import Share
+from nepse_func import share_data
 
-
-# @login_required
-# def home(request):
-#     context = {
-#         'shares': request.user.share_set.all()
-#     }
-#     return render(request, "sharekitapp/home.html", context)
 
 class ShareListView(LoginRequiredMixin, ListView):
+    """ Lists shares on home """
     model = Share
     template_name = 'sharekitapp/home.html'
     context_object_name = 'shares'
@@ -26,14 +20,21 @@ class ShareListView(LoginRequiredMixin, ListView):
         return Share.objects.filter(
             user=self.request.user
         ).order_by('-id')
+    
+    def get_context_data(self, **kwargs: any) -> dict[str, any]:
+        context = super(ShareListView, self).get_context_data(**kwargs)
+        context['share_data'] = share_data
+        return context
 
 class ShareDetailView(LoginRequiredMixin, DetailView):
+    """ Individual Share details """
     model = Share
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
 
 class ShareAddView(LoginRequiredMixin, CreateView):
+    """ View to add new shares """
     model = Share
     fields = ['scrip', 'quantity']
 
@@ -42,6 +43,7 @@ class ShareAddView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class ShareUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """ View to update existing share details """
     model = Share
     fields = ['scrip', 'quantity']
 
@@ -56,6 +58,7 @@ class ShareUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 class ShareDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """ View to delete an existing share details """
     model = Share
     success_url = '/home'
 

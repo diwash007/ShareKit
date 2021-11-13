@@ -77,7 +77,7 @@ button {
   text-align: center;
   padding: 15px 40px;
   margin-top: 5px;
-  background-color: #b08bf8;
+  background-color: #036986;
   color: #fff;
   font-size: 14px;
   margin-left: auto;
@@ -139,7 +139,7 @@ input:focus {
   height: auto;
   min-height: 100%;
   position: relative;
-  background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://images.pexels.com/photos/3551227/pexels-photo-3551227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;

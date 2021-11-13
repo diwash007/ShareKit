@@ -1,23 +1,63 @@
 {% extends "sharekitapp/base.html" %}
+{% load share_filters %}
 
 {% block title %}
     Home - ShareKit
 {% endblock %}
 
 {% block content %}
-    <div class="content-section">
-        <a href="{% url 'add-share' %}" class="float-right"><button>Add</button></a>
-        {% for s in shares %}
-            <a href="{% url 'share-detail' s.id %}">
-                {{ s }}
-            </a>
-            <a href="{% url 'update-share' s.id %}">
-                Update
-            </a>
-            <a href="{% url 'delete-share' s.id %}">
-                Delete
-            </a>
-            <br>
+<div class="content-section">
+    <h4>Portfolio:</h4>
+    <a href="{% url 'add-share' %}" class="float-right"><button>Add</button></a>
+    <table class="table">
+        <tr class="table-head">
+            <th>Symbol</th>
+            <th>Quantity</th>
+            <th>Previous Closing</th>
+            <th>Closing Price</th>
+            <th>Share Value</th>
+            <th>&#128736;</th>
+
+        </tr>
+            {% for share in shares %}
+            <tr class="{{ share|check_change }}">
+            <td>
+                {{ share.scrip }}
+            </td>
+            <td>
+                {{ share.quantity }}
+            </td>
+            {% if share_data != None %}
+            {% for key,value in share_data.items %}
+            {% if share.scrip == key %}
+            <td>
+                {{ value|getkey:'Previous Closing' }}
+            </td>
+            <td>
+                {{ value|getkey:'Closing Price' }}
+            </td>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <td>
+                {{ share|total_amt }}
+            </td>
+            <td>
+                <a href="{% url 'update-share' share.id %}">
+                    &#9998;
+                </a>
+                <a href="{% url 'delete-share' share.id %}">
+                    &#10060;
+                </a>
+            </td>
+        </tr>
         {% endfor %}
-    </div>
+        <tr>
+            <th colspan="4" class="text-right">Total:</th>
+            <th>{{ shares|grand_total }}</th>
+        </tr>
+    </table>
+    
+</div>
+
 {% endblock %}

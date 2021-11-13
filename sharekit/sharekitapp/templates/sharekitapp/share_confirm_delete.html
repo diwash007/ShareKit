@@ -16,7 +16,7 @@
     {% endif %}
     <h4>Delete Share:</h4>
     {% csrf_token %}
-        <h5> Are you sure you want to delete the share "{{ object }}"?</h5>
+        <h5> Are you sure you want to delete the share "{{ object.scrip }}"?</h5>
 
     <button type="submit" class="btn btn-danger">Yes, Delete</button>
 </form>

@@ -1,3 +1,7 @@
+:root {
+    --clr: #036986;
+}
+
 h4 {
     font-size: 24px;
     font-weight: 600;
@@ -59,9 +63,10 @@ button {
     min-width: 100px;
     border-radius: 24px;
     text-align: center;
-    padding: 15px 40px;
+    padding: 10px;
     margin-top: 5px;
-    background-color: #b08bf8;
+    margin-bottom: 5px;
+    background-color: var(--clr);
     color: #fff;
     font-size: 14px;
     margin-left: auto;
@@ -162,14 +167,16 @@ input:focus {
     margin-bottom: 20px;
 }
 
-@media (max-width:650px) {
-    .left {
-    display: none;
-    }
+.select {
+    border: 1px solid rgb(204, 202, 202);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    line-height: 1.1;
 }
 
 .top-nav {
-    background-color: #b08bf8;
+    background-color: var(--clr);
     padding-left: 5%;
     padding-right: 5%;
 }
@@ -181,6 +188,7 @@ input:focus {
     border: 1px solid #dddddd;
     border-radius: 3px;
     margin-bottom: 20px;
+    overflow: auto;
 }
 
 .account-img {
@@ -193,4 +201,17 @@ input:focus {
 .account-heading {
     padding-top: 20px;
     font-size: 2.5rem;
+}
+
+.table-head {
+    background-color: var(--clr);
+    color: white;
+}
+
+@media (max-width:768px) {
+
+    .content-section {
+        padding: 10px 0px;
+        border: None;
+    }
 }
