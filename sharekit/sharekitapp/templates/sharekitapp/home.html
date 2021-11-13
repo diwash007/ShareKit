@@ -19,6 +19,13 @@
             <th>&#128736;</th>
 
         </tr>
+            {% if not shares %}
+            <tr>
+                <td colspan="6">
+                    Add items to your portfolio to track
+                </td>
+            </tr>
+            {% endif %}
             {% for share in shares %}
             <tr class="{{ share|check_change }}">
             <td>

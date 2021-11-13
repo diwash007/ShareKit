@@ -204,7 +204,7 @@ input:focus {
 }
 
 .table-head, footer {
-    background-color: var(--clr);
+    background-color: var(--clr) !important;
     color: white;
 }
 

@@ -9,14 +9,20 @@
 <div class="content-section">
     <h4>Demats:</h4>
     <a href="{% url 'add-demat' %}" class="float-right"><button>Add</button></a>
-    <table class="table">
+    <table class="table table-striped">
         <tr class="table-head">
             <th>BOID</th>
             <th>Name</th>
             <th>&#128736;</th>
 
         </tr>
-        
+        {% if not demats %}
+            <tr>
+                <td colspan="6">
+                    Add demat details to check ipo result
+                </td>
+            </tr>
+            {% endif %}
         {% for demat in demats %}
             <tr>
                 <td>{{ demat.boid }}</td>
