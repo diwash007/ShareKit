@@ -1,0 +1,39 @@
+{% extends "sharekitapp/base.html" %}
+{% load share_filters %}
+
+{% block title %}
+    IPO - ShareKit
+{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h4>Demats:</h4>
+    <a href="{% url 'add-demat' %}" class="float-right"><button>Add</button></a>
+    <table class="table">
+        <tr class="table-head">
+            <th>BOID</th>
+            <th>Name</th>
+            <th>&#128736;</th>
+
+        </tr>
+        
+        {% for demat in demats %}
+            <tr>
+                <td>{{ demat.boid }}</td>
+                <td>{{ demat.name }}</td>
+                <td>
+                    <a href="{% url 'update-demat' demat.id %}">
+                        &#9998;
+                    </a>
+                    <a href="{% url 'delete-demat' demat.id %}">
+                        &#10060;
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+            
+    </table>
+    
+</div>
+
+{% endblock %}

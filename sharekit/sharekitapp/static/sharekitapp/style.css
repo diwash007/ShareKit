@@ -203,10 +203,11 @@ input:focus {
     font-size: 2.5rem;
 }
 
-.table-head {
+.table-head, footer {
     background-color: var(--clr);
     color: white;
 }
+
 
 @media (max-width:768px) {
 
