@@ -12,7 +12,7 @@ try:
     response = requests.get(COMPANY_URL)
     details = response.json()
 except:
-    with open("companies.json") as f:
+    with open("sharekitapp/companies.json") as f:
         data = f.read()
         details = json.loads(data)
 
