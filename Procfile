@@ -1,1 +1,1 @@
-web: gunicorn sharekit/sharekit.wsgi
+web: gunicorn sharekit.sharekit.wsgi
