@@ -1,15 +1,11 @@
 from django.contrib.auth import login
-from django.forms import forms
-from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import DeleteView
 from .models import Share, Demat
 from .forms import Ipo
-from nepse_func import share_data, companies, get_ipo_result
+from nepse_func import share_data, get_ipo_result
 
 
 ###### Share views ######
