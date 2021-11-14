@@ -62,5 +62,4 @@ def get_ipo_result(request, company):
         )
         data = response.json()
         result[boid] = data.get("message")
-    print(result)
     return result

@@ -41,9 +41,7 @@ def check_change(share):
 
 @register.filter
 def is_success(result, boid):
-    print(boid)
     message = result.get(boid)
-    print(message)
     if "Sorry" in message:
         return "table-danger"
     else:
