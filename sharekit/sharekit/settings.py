@@ -126,8 +126,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    'sharekitapp/static',
-    'users/static'
+    BASE_DIR / 'sharekitapp/static',
+    BASE_DIR / 'users/static'
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
