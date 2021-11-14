@@ -1,3 +1,4 @@
+from os import name
 from django.urls import path
 from .views import (
     ShareListView, ShareAddView, ShareUpdateView, ShareDeleteView,
@@ -16,5 +17,7 @@ urlpatterns = [
     path('demat/add', DematAddView.as_view(), name="add-demat"),
     path('demat/update/<int:pk>', DematUpdateView.as_view(), name="update-demat"),
     path('demat/delete/<int:pk>/', DematDeleteView.as_view(), name="delete-demat"),
+
+    path('ipo-result/', views.ipo_check, name="ipo-result")
 
 ]

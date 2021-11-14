@@ -38,3 +38,13 @@ def check_change(share):
             return "table-primary"
     except:
         return "None"
+
+@register.filter
+def is_success(result, boid):
+    print(boid)
+    message = result.get(boid)
+    print(message)
+    if "Sorry" in message:
+        return "table-danger"
+    else:
+        return "table-success"

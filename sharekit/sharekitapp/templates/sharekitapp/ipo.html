@@ -1,5 +1,6 @@
 {% extends "sharekitapp/base.html" %}
 {% load share_filters %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     IPO - ShareKit
@@ -38,8 +39,20 @@
             </tr>
         {% endfor %}
             
-    </table>
-    
+    </table><hr>
+    <form class="log-in" method="POST" action="{% url 'ipo-result' %}">
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="alert alert-{{msg.tags}}">
+              {{ msg }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        <h5>IPO check:</h5>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Check</button>
+    </form>
 </div>
 
 {% endblock %}

@@ -1,4 +1,6 @@
 from django.contrib.auth import login
+from django.forms import forms
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
@@ -6,7 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import DeleteView
 from .models import Share, Demat
-from nepse_func import share_data
+from .forms import Ipo
+from nepse_func import share_data, companies, get_ipo_result
 
 
 ###### Share views ######
@@ -86,6 +89,7 @@ class DematListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs: any) -> dict[str, any]:
         context = super(DematListView, self).get_context_data(**kwargs)
         context['share_data'] = share_data
+        context['form'] = Ipo()
         return context
 
 class DematAddView(LoginRequiredMixin, CreateView):
@@ -123,3 +127,14 @@ class DematDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == demat.user:
             return True
         return False
+
+###### IPO ######
+def ipo_check(request):
+    if request.method == "POST":
+        form = Ipo(request.POST)
+        if form.is_valid():
+            company = form.cleaned_data["company"]
+            result = get_ipo_result(request, company)
+            return render(request, "sharekitapp/ipo-check.html", {'result': result})
+    return redirect("ipo")
+    

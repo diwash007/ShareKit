@@ -1,0 +1,37 @@
+{% extends "sharekitapp/base.html" %}
+{% load share_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    IPO - ShareKit
+{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h4>IPO result:</h4>
+    <a href="{% url 'add-demat' %}" class="float-right"><button>Add</button></a>
+    <table class="table table-striped">
+        <tr class="table-head">
+            <th>BOID</th>
+            <th>IPO Result</th>
+
+        </tr>
+        {% if not result %}
+            <tr>
+                <td colspan="2">
+                    Something went wrong. Please try again later.
+                </td>
+            </tr>
+            {% endif %}
+        {% for demat,ipo in result.items %}
+            <tr class="{{ result|is_success:demat }}">
+                <td>{{ demat }}</td>
+                <td>{{ ipo }}</td>
+            </tr>
+        {% endfor %}
+            
+    </table>
+
+</div>
+
+{% endblock %}
