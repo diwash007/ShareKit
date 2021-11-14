@@ -12,9 +12,7 @@ try:
     response = requests.get(COMPANY_URL)
     details = response.json()
 except:
-    with open("sharekitapp/companies.json") as f:
-        data = f.read()
-        details = json.loads(data)
+    details = {}
 
 details = sorted(details, key=lambda d: d['Stock Symbol'])
 scrips = [(i["Stock Symbol"], i["Stock Symbol"]) for i in details]
