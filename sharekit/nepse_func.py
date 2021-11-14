@@ -37,8 +37,6 @@ try:
     response = requests.get(IPO_URL)
     data = response.json()
     companies = [(item.get("name"), item.get("name")) for item in data.get("body")]
-    # for item in data.get("body"):
-    #     companies.append((item.get("name"), item.get("name")))
     companies_id = {item.get("name"):item.get("id") for item in data.get("body")}
 except:
     companies = []
@@ -48,8 +46,7 @@ except:
 def get_ipo_result(request, company):
     IPO_RES_URL = os.environ.get("IPO_RES_URL")
     result = {}
-
-    # Todo: get user boid and get ipo result
+    
     boids = [demat.boid for demat in request.user.demat_set.all()]
     for boid in boids:
         values = {
