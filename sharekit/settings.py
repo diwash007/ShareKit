@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.sharekitapp.herokuapp.com']
+ALLOWED_HOSTS = ['www.sharekitapp.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
