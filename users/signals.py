@@ -9,7 +9,7 @@ from .models import Profile
 #     if created:
 #         Profile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=User, dispatch_uid="user_profile_create")
 def save_profile(sender, instance, created, **kwargs):
     user = instance
     if created:
