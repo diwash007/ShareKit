@@ -23,7 +23,8 @@ pip install -r requirements.txt
 ```
 
 # Live Project
-coming soon
+https://sharekit.herokuapp.com
 
 # Inspirations
 Login and Registration page: [elujambio login page](https://codepen.io/elujambio/pen/yjwzGP)
+Landing Page: [Tailwind Toolbox](https://www.tailwindtoolbox.com/templates/landing-page)
