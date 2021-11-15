@@ -8,6 +8,10 @@ from .forms import Ipo
 from nepse_func import share_data, get_ipo_result
 
 
+###### Landing page view ######
+def index(request):
+    return render(request, "sharekitapp/index.html")
+    
 ###### Share views ######
 class ShareListView(LoginRequiredMixin, ListView):
     """ Lists shares on home """

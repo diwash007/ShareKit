@@ -6,6 +6,7 @@ from . import views
 
 
 urlpatterns = [
+    path('', views.index, name="index"),
     path('home/', ShareListView.as_view(), name="home"),
     path('share/add/', ShareAddView.as_view(), name="add-share"),
     path('share/update/<int:pk>', ShareUpdateView.as_view(), name="update-share"),

@@ -24,3 +24,6 @@ pip install -r requirements.txt
 
 # Live Project
 coming soon
+
+# Inspirations
+Login and Registration page: [elujambio login page](https://codepen.io/elujambio/pen/yjwzGP)
