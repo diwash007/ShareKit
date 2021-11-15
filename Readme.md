@@ -23,4 +23,4 @@ pip install -r requirements.txt
 ```
 
 # Live Project
-https://sharekit.herokuapp.com/
+coming soon
