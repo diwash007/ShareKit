@@ -18,6 +18,7 @@ sqlparse = "==0.4.2"
 urllib3 = "==1.26.7"
 Django = "==3.2.9"
 django-heroku = "*"
+whitenoise = "*"
 
 [dev-packages]
 
