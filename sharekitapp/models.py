@@ -1,15 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.aggregates import Max
 from django.db.models.deletion import CASCADE
-from django.core.validators import MaxLengthValidator, MinLengthValidator, RegexValidator
+from django.core.validators import MinValueValidator, RegexValidator
 from django.urls import reverse
 from nepse_func import scrips
 
 
 class Share(models.Model):
     scrip = models.CharField(max_length=20, choices=scrips)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(validators=[MinValueValidator(limit_value=0)])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
