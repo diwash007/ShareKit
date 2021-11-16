@@ -45,7 +45,7 @@ def get_ipo_result(request, company):
     IPO_RES_URL = os.environ.get("IPO_RES_URL")
     result = {}
     
-    boids = [demat.boid for demat in request.user.demat_set.all()]
+    boids = [int(demat.boid) for demat in request.user.demat_set.all()]
     for boid in boids:
         values = {
             "companyShareId": companies_id.get(company),

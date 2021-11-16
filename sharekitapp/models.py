@@ -19,7 +19,7 @@ class Share(models.Model):
         return reverse('home')
 
 class Demat(models.Model):
-    boid = models.IntegerField(validators=[
+    boid = models.CharField(max_length=16, validators=[
         RegexValidator(
             regex='^1301\d{12}$',
             message='Invalid BOID',
