@@ -26,5 +26,6 @@ pip install -r requirements.txt
 https://sharekit.herokuapp.com
 
 # Inspirations
+- Share site idea: [Santosh sir's Easy Shares](https://shares.santoshb.com.np/)
 - Login and Registration page: [elujambio login page](https://codepen.io/elujambio/pen/yjwzGP)
 - Landing Page: [Tailwind Toolbox](https://www.tailwindtoolbox.com/templates/landing-page)
