@@ -1,10 +1,11 @@
-import os, json, requests
-from types import resolve_bases
+import os, requests
 from dotenv import load_dotenv
-from django.contrib.auth.models import User
+from cryptography.fernet import Fernet
 
 
 load_dotenv()
+key = os.environ.get("CRYPTO_KEY")
+fernet = Fernet(key)
 
 # Fetching Scrip lists
 COMPANY_URL = os.environ.get("COMPANY_URL")
@@ -45,7 +46,7 @@ def get_ipo_result(request, company):
     IPO_RES_URL = os.environ.get("IPO_RES_URL")
     result = {}
     
-    boids = [int(demat.boid) for demat in request.user.demat_set.all()]
+    boids = [int(fernet.decrypt(demat.boid[2:-1].encode()).decode()) for demat in request.user.demat_set.all()]
     for boid in boids:
         values = {
             "companyShareId": companies_id.get(company),

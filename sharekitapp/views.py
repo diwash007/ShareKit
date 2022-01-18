@@ -1,3 +1,4 @@
+import os
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -6,7 +7,11 @@ from django.views.generic.edit import DeleteView
 from .models import Share, Demat
 from .forms import Ipo
 from nepse_func import share_data, get_ipo_result
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 
+
+load_dotenv()
 
 ###### Landing page view ######
 def index(request):
@@ -90,6 +95,7 @@ class DematListView(LoginRequiredMixin, ListView):
         context = super(DematListView, self).get_context_data(**kwargs)
         context['share_data'] = share_data
         context['form'] = Ipo()
+        # context.object_list
         return context
 
 class DematAddView(LoginRequiredMixin, CreateView):
@@ -98,6 +104,9 @@ class DematAddView(LoginRequiredMixin, CreateView):
     fields = ['boid', 'name']
 
     def form_valid(self, form):
+        key = os.environ.get("CRYPTO_KEY")
+        fernet = Fernet(key)
+        form.instance.boid = fernet.encrypt(form.instance.boid.encode())
         form.instance.user = self.request.user
         return super().form_valid(form)
 
@@ -107,6 +116,9 @@ class DematUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['boid', 'name']
 
     def form_valid(self, form):
+        key = os.environ.get("CRYPTO_KEY")
+        fernet = Fernet(key)
+        form.instance.boid = fernet.encrypt(form.instance.boid.encode())
         form.instance.user = self.request.user
         return super().form_valid(form)
     
