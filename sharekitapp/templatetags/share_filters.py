@@ -1,8 +1,15 @@
+import os
 from django import template
 from django import template
 from nepse_func import share_data
+from cryptography.fernet import Fernet
+from dotenv import load_dotenv
+
 
 register = template.Library()
+load_dotenv()
+key = os.environ.get("CRYPTO_KEY")
+fernet = Fernet(key)
 
 @register.filter(name='getkey')
 def getkey(value, arg):
@@ -46,3 +53,8 @@ def is_success(result, boid):
         return "table-danger"
     else:
         return "table-success"
+
+@register.filter
+def decrypt_boid(boid):
+    boid = boid[2:-1].encode()
+    return fernet.decrypt(boid).decode()
