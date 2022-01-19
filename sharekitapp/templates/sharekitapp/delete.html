@@ -1,5 +1,5 @@
 {% extends "sharekitapp/base.html" %}
-
+{% load share_filters %}
 {% block title %}
     Delete Item - ShareKit
 {% endblock %}
@@ -16,7 +16,7 @@
     {% endif %}
     <h4>Delete Item:</h4>
     {% csrf_token %}
-        <h5> Are you sure you want to delete the item "{{ object }}"?</h5>
+        <h5> Are you sure you want to delete the demat "{{ object.boid|decrypt_boid }}"?</h5>
 
     <button type="submit" class="btn btn-danger">Yes, Delete</button>
 </form>
