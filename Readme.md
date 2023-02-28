@@ -22,9 +22,6 @@ Installing requirements:
 pip install -r requirements.txt
 ```
 
-# Live Project
-https://sharekit.herokuapp.com
-
 # Inspirations
 - Share site idea: [Santosh sir's Easy Shares](https://shares.santoshb.com.np/)
 - Login and Registration page: [elujambio login page](https://codepen.io/elujambio/pen/yjwzGP)
